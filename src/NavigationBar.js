@@ -1,11 +1,18 @@
 import './App.css';
 import * as React from "react";
 import {Link, NavLink} from "react-router-dom";
+import Cookies from "universal-cookie";
 
 class NavigationBar extends React.Component {
     state = {
         links: [{title: "Profile", path: "/profile"}, {title: "Posts", path: "/posts"}
             , {title: "About", path: "/about"}]
+    }
+
+    logout = () => {
+        const cookies = new Cookies();
+        cookies.remove("logged_in");
+        window.location.reload();
     }
 
     render() {
@@ -27,6 +34,9 @@ class NavigationBar extends React.Component {
                             )
                         })
                     }
+                    <li onClick={this.logout}>
+                        Logout
+                    </li>
                 </ul>
             </div>
         )
