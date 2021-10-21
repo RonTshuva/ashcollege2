@@ -5,7 +5,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div>
-                Enter your login details
+                Enter your login credentials
             </div>
         )
     }
