@@ -1,12 +1,14 @@
 import './App.css';
 import * as React from "react";
 import Cookies from "universal-cookie";
+import axios from "axios";
 
 class LoginPage extends React.Component {
     state = {
         username: "",
         password: "",
-        showError: false
+        showError: false,
+        response: "11111"
     }
 
     onUsernameChange = (e) => {
@@ -23,15 +25,24 @@ class LoginPage extends React.Component {
     }
 
     login = () => {
-        if (this.state.username == "Shai" && this.state.password == "1234") {
-            const cookies = new Cookies();
-            cookies.set("logged_in", "true");
-            window.location.reload();
-        } else {
-            this.setState({
-                showError: true
+        axios.get("http://localhost:8989/sign-in", {
+            params: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        })
+            .then((response) => {
+                if (response.data && response.data.length > 0) {
+                    const cookies = new Cookies();
+                    cookies.set("logged_in", "true");
+                    window.location.reload();
+                } else {
+                    this.setState({
+                        showError: true
+                    })
+                }
             })
-        }
+
     }
 
 
@@ -54,6 +65,7 @@ class LoginPage extends React.Component {
                     this.state.showError &&
                     <div>Wrong Password</div>
                 }
+                <div>{this.state.response}</div>
             </div>
         )
     }
