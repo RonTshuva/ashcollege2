@@ -14,13 +14,14 @@ class App extends React.Component {
         isLoggedIn: false
     }
 
+
     componentDidMount() {
         const cookies = new Cookies();
         if (cookies.get("logged_in") == "true") {
             this.setState({
                 isLoggedIn: true
             })
-        }
+        }//127.0.0.1:3000
     }
 
     render() {

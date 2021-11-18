@@ -28,7 +28,6 @@ class NavigationBar extends React.Component {
                                 <NavLink to={link.path} className={"link"} activeClassName={"active"}>
                                     <li>
                                         {link.title}
-
                                     </li>
                                 </NavLink>
                             )

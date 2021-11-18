@@ -64,6 +64,7 @@ class LoginPage extends React.Component {
                 {
                     this.state.showError &&
                     <div>Wrong Password</div>
+
                 }
                 <div>{this.state.response}</div>
             </div>
